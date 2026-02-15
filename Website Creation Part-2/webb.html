@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Lite</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; text-align: center; }
+        nav { display: flex; justify-content: space-between; padding: 15px 5%; background: #222; color: #fff; position: sticky; top: 0; }
+        .banner { height: 40vh; background: #555 url('https://picsum.photos') center/cover; display: flex; align-items: center; justify-content: center; color: #fff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; }
+        .item { border: 1px solid #ddd; border-radius: 5px; overflow: hidden; }
+        .item img { width: 100%; height: 150px; object-fit: cover; }
+        .btn { padding: 5px 15px; margin: 10px 5px; cursor: pointer; border: 1px solid #222; background: none; }
+        .active { background: #222; color: #fff; }
+        .hide { display: none; }
+    </style>
+</head>
+<body>
+    <nav><b>BISTRO</b> <div>Home | Menu | Contact</div></nav>
+    <div class="banner"><h1>Tastier & Faster</h1></div>
+    <div style="padding: 20px;">
+        <button class="btn active" onclick="flt('all',this)">All</button>
+        <button class="btn" onclick="flt('food',this)">Food</button>
+        <button class="btn" onclick="flt('drink',this)">Drink</button>
+        <div class="grid">
+            <div class="item food"><img src="pas.jpg"><h3>Pasta</h3></div>
+            <div class="item drink"><img src="wine.jpg"><h3>Wine</h3></div>
+            <div class="item food"><img src="piz.jpg"><h3>Pizza</h3></div>
+        </div>
+    </div>
+    <script>
+        function flt(c, b) {
+            document.querySelectorAll('.btn').forEach(x => x.classList.remove('active'));
+            b.classList.add('active');
+            document.querySelectorAll('.item').forEach(i => i.classList.toggle('hide', c !== 'all' && !i.classList.contains(c)));
+        }
+    </script>
+</body>
+</html>

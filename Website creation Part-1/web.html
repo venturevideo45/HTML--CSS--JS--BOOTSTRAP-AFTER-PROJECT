@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        nav { display: flex; justify-content: space-between; padding: 20px; background: #222; color: #fff; position: sticky; top: 0; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a { color: #fff; text-decoration: none; }
+        
+        .banner { height: 50vh; background: #444 url('https://picsum.photos') center/cover; display: flex; align-items: center; justify-content: center; color: #fff; text-shadow: 2px 2px 4px #000; }
+        
+        .portfolio { padding: 40px; text-align: center; }
+        .filter-btn { padding: 8px 16px; margin: 5px; cursor: pointer; border: 1px solid #222; background: none; }
+        .filter-btn.active { background: #222; color: #fff; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .item { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .item img { width: 100%; height: 200px; object-fit: cover; }
+        .item h3 { padding: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <b>GOURMET</b>
+        <ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#menu">Menu</a></li></ul>
+    </nav>
+
+    <header class="banner"><h1>Fine Dining Experience</h1></header>
+
+    <section class="portfolio" id="menu">
+        <button class="filter-btn active" onclick="filter('all', this)">All</button>
+        <button class="filter-btn" onclick="filter('main', this)">Mains</button>
+        <button class="filter-btn" onclick="filter('drink', this)">Drinks</button>
+
+        <div class="grid">
+            <div class="item main">
+                <img src="img.jpg"><h3>Grilled Panner</h3>
+            </div>
+            <div class="item drink">
+                <img src="img1.jpg"><h3>Classic Mojito</h3>
+            </div>
+            <div class="item main">
+                <img src="img2.jpg"><h3>Veg Noodles</h3>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function filter(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.item').forEach(el => {
+                el.classList.toggle('hidden', cat !== 'all' && !el.classList.contains(cat));
+            });
+        }
+    </script>
+</body>
+</html>
